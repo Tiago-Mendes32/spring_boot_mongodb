@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.legacy.spring_mongo.domain.User;
 import com.legacy.spring_mongo.repositories.UserRepository;
+import com.legacy.spring_mongo.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -19,12 +20,14 @@ public class UserService {
 		return repository.findAll();
 	}
 	
-	public Optional<User> findById(String id) {
-		return repository.findById(id);
+	public User findById(String id) {
+	    Optional<User> obj = repository.findById(id);
+	    return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found: " + id));
 	}
 
 	public User save(User obj) {
 		return repository.save(obj);
+		
 	}
 	
 }
