@@ -2,8 +2,6 @@ package com.legacy.spring_mongo.dto;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-
 import com.legacy.spring_mongo.domain.User;
 
 public class UserDTO implements Serializable{
