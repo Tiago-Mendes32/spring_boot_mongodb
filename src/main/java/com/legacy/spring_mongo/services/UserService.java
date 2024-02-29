@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.legacy.spring_mongo.domain.User;
+import com.legacy.spring_mongo.dto.UserDTO;
 import com.legacy.spring_mongo.repositories.UserRepository;
 import com.legacy.spring_mongo.services.exceptions.ObjectNotFoundException;
 
@@ -27,7 +28,9 @@ public class UserService {
 
 	public User save(User obj) {
 		return repository.save(obj);
-		
 	}
 	
+	public User fromDTO(UserDTO objDTO) {
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
+	}
 }
