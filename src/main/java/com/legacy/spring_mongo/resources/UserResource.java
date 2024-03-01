@@ -62,5 +62,4 @@ public class UserResource {
 		service.update(obj);
 		return ResponseEntity.noContent().build();	
 	}
-	
 }
