@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.legacy.spring_mongo.domain.Post;
 import com.legacy.spring_mongo.domain.User;
 import com.legacy.spring_mongo.dto.AuthorDTO;
+import com.legacy.spring_mongo.dto.CommentDTO;
 import com.legacy.spring_mongo.repositories.PostRepository;
 import com.legacy.spring_mongo.repositories.UserRepository;
 import com.legacy.spring_mongo.services.UserService;
@@ -30,6 +31,8 @@ public class Instantiation implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 		
@@ -43,6 +46,13 @@ public class Instantiation implements CommandLineRunner {
 		
 		Post post1 = new Post(null, Instant.now(), "Partiu viagem!", "Vou viajar para São Pulo, abraços!", new AuthorDTO(maria));
 		Post post2 = new Post(null, Instant.now(), "Bom dia!", "Acordei feliz hoje!", new AuthorDTO(maria));
+		
+		CommentDTO c1 = new CommentDTO("Boa viagem, mano!", Instant.now(), new AuthorDTO(alex));
+		CommentDTO c2 = new CommentDTO("Aproveite", Instant.now(), new AuthorDTO(bob));
+		CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", Instant.now(), new AuthorDTO(alex));
+		
+		post1.getComments().addAll(Arrays.asList(c1, c2));
+		post2.getComments().addAll(Arrays.asList(c3));
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));	
 		
