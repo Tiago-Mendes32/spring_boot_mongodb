@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.legacy.spring_mongo.domain.Post;
 import com.legacy.spring_mongo.domain.User;
+import com.legacy.spring_mongo.dto.AuthorDTO;
 import com.legacy.spring_mongo.repositories.PostRepository;
 import com.legacy.spring_mongo.repositories.UserRepository;
 import com.legacy.spring_mongo.services.UserService;
@@ -40,8 +41,8 @@ public class Instantiation implements CommandLineRunner {
 		userService.save(alex);
 		userService.save(bob);
 		
-		Post post1 = new Post(null, Instant.now(), "Partiu viagem!", "Vou viajar para São Pulo, abraços!", maria);
-		Post post2 = new Post(null, Instant.now(), "Bom dia!", "Acordei feliz hoje!", maria);
+		Post post1 = new Post(null, Instant.now(), "Partiu viagem!", "Vou viajar para São Pulo, abraços!", new AuthorDTO(maria));
+		Post post2 = new Post(null, Instant.now(), "Bom dia!", "Acordei feliz hoje!", new AuthorDTO(maria));
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));	
 	}
