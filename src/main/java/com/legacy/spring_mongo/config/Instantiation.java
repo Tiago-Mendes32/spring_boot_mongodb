@@ -1,6 +1,7 @@
 package com.legacy.spring_mongo.config;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
@@ -31,7 +32,7 @@ public class Instantiation implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		userRepository.deleteAll();
 		postRepository.deleteAll();
@@ -44,12 +45,12 @@ public class Instantiation implements CommandLineRunner {
 		userService.save(alex);
 		userService.save(bob);
 		
-		Post post1 = new Post(null, Instant.now(), "Partiu viagem!", "Vou viajar para São Pulo, abraços!", new AuthorDTO(maria));
-		Post post2 = new Post(null, Instant.now(), "Bom dia!", "Acordei feliz hoje!", new AuthorDTO(maria));
+		Post post1 = new Post(null, LocalDate.parse("2024-03-02", fmt), "Partiu viagem!", "Vou viajar para São Pulo, abraços!", new AuthorDTO(maria));
+		Post post2 = new Post(null, LocalDate.parse("2024-03-02", fmt), "Bom dia!", "Acordei feliz hoje!", new AuthorDTO(maria));
 		
-		CommentDTO c1 = new CommentDTO("Boa viagem, mano!", Instant.now(), new AuthorDTO(alex));
-		CommentDTO c2 = new CommentDTO("Aproveite", Instant.now(), new AuthorDTO(bob));
-		CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", Instant.now(), new AuthorDTO(alex));
+		CommentDTO c1 = new CommentDTO("Boa viagem, mano!", LocalDate.parse("2024-03-02", fmt), new AuthorDTO(alex));
+		CommentDTO c2 = new CommentDTO("Aproveite", LocalDate.parse("2024-03-02", fmt), new AuthorDTO(bob));
+		CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", LocalDate.parse("2024-03-02", fmt), new AuthorDTO(alex));
 		
 		post1.getComments().addAll(Arrays.asList(c1, c2));
 		post2.getComments().addAll(Arrays.asList(c3));

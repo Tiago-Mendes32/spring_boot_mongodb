@@ -2,6 +2,7 @@ package com.legacy.spring_mongo.domain;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +19,7 @@ public class Post implements Serializable{
 	
 	@Id
 	private String id;
-	private Instant date;
+	private LocalDate date;
 	private String title;
 	private String body;
 	
@@ -28,7 +29,7 @@ public class Post implements Serializable{
 	public Post() {
 }
 
-	public Post(String id, Instant date, String title, String body, AuthorDTO author) {
+	public Post(String id, LocalDate date, String title, String body, AuthorDTO author) {
 		this.id = id;
 		this.date = date;
 		this.title = title;
@@ -44,11 +45,11 @@ public class Post implements Serializable{
 		this.id = id;
 	}
 
-	public Instant getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

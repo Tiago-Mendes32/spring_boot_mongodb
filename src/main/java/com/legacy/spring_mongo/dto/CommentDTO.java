@@ -2,18 +2,19 @@ package com.legacy.spring_mongo.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 
 public class CommentDTO implements Serializable{
 private static final long serialVersionUID = 1L;
 
 	private String text;
-	private Instant date;
+	private LocalDate date;
 	private AuthorDTO author;
 	
 	public CommentDTO() {
 }
 
-	public CommentDTO(String text, Instant date, AuthorDTO author) {
+	public CommentDTO(String text, LocalDate date, AuthorDTO author) {
 		this.text = text;
 		this.date = date;
 		this.author = author;
@@ -27,11 +28,11 @@ private static final long serialVersionUID = 1L;
 		this.text = text;
 	}
 
-	public Instant getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
